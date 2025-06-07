@@ -14,7 +14,8 @@ import {
   Briefcase,
 } from "lucide-react";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
-
+import my from "./img/WIN_20250607_20_48_28_Pro.jpg";
+import { CgVercel } from "react-icons/cg";
 function App() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -59,7 +60,7 @@ function App() {
   const skills = [
     {
       name: "React & Next.js",
-      level: 60,
+      level: 80,
       icon: Globe,
       description: "Modern frontend development",
     },
@@ -71,13 +72,13 @@ function App() {
     },
     {
       name: "JavaScript/TypeScript",
-      level: 85,
+      level: 90,
       icon: Code,
       description: "Core programming languages",
     },
     {
       name: "Full Stack Development",
-      level: 50,
+      level: 70,
       icon: Smartphone,
       description: "End-to-end solutions",
     },
@@ -162,7 +163,7 @@ function App() {
         <div className="relative z-10 text-center px-4">
           <div className="mb-8 relative">
             <div className="w-32 h-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl font-bold shadow-2xl shadow-blue-500/25 animate-float-gentle hover:animate-wiggle transition-all duration-300 cursor-pointer">
-              Islam
+            <img className="rounded-[50px] w-[85%]" src={my} alt="" />
             </div>
             <div className="absolute inset-0 w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-ping opacity-20"></div>
           </div>
@@ -216,6 +217,15 @@ function App() {
             >
               <Github className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
               View GitHub
+            </a>
+            <a
+              href="https://vercel.com/isa851s-projects"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25"
+            >
+              <CgVercel className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+              Vercel
             </a>
           </div>
         </div>
@@ -287,7 +297,6 @@ function App() {
               }`}
             >
               <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105 group relative overflow-hidden">
-                {/* Shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-blue-400 transition-colors">
@@ -337,7 +346,6 @@ function App() {
       </section>
 
       <section id="projects" className="py-20 px-4 relative overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-l from-green-900/10 to-blue-900/10"></div>
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 animate-gradient-x"></div>
 
@@ -424,12 +432,11 @@ function App() {
         </div>
       </section>
 
-      {/* Skills Section */}
       <section
         id="skills"
         className="py-20 px-4 bg-gray-800/50 relative overflow-hidden"
       >
-        {/* Background effects */}
+
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10"></div>
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 animate-gradient-x"></div>
 
@@ -492,9 +499,8 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-20 px-4 relative overflow-hidden">
-        {/* Background effects */}
+
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/10 to-blue-900/10"></div>
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 animate-gradient-x"></div>
 
@@ -550,11 +556,10 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-8 px-4 border-t border-gray-800">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-400 hover:text-white transition-colors duration-300 animate-pulse">
-            © 2024 Islam Abdikalilov. Создано с passion и кодом.
+            & 2025 Islam Abdikalilov. Создано со страстью  и кодом.
           </p>
         </div>
       </footer>
