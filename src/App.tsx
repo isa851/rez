@@ -157,6 +157,7 @@ function App() {
 
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -206,29 +207,53 @@ function App() {
         <div className="relative z-10 text-center px-4">
           <div className="mb-8 relative">
             {" "}
-            <div className="absolute top-6 left-6 z-20">
+            <div
+              className={`absolute ${
+                isMobile ? "top-4 right-4" : "top-6 left-6"
+              } z-20`}
+            >
               <div className="relative">
                 <button
                   onClick={toggleLanguageDropdown}
-                  className="flex items-center gap-2 bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 border border-gray-600/50 min-w-[140px]"
+                  className={`flex items-center gap-2 bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 ${
+                    isMobile ? "p-2" : "px-4 py-2"
+                  } rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 border border-gray-600/50 ${
+                    isMobile ? "min-w-[auto]" : "min-w-[140px]"
+                  }`}
                 >
                   <img
                     src={currentLanguage.flagImage}
                     alt={`${currentLanguage.name} flag`}
-                    className="w-6 h-4 rounded-sm object-cover"
+                    className={`${
+                      isMobile ? "w-5 h-3" : "w-6 h-4"
+                    } rounded-sm object-cover`}
                   />
-                  <span className="text-white font-medium text-sm flex-1 text-left">
-                    {currentLanguage.name}
-                  </span>
+                  {!isMobile && (
+                    <span className="text-white font-medium text-sm flex-1 text-left">
+                      {currentLanguage.name}
+                    </span>
+                  )}
                   {isLanguageDropdownOpen ? (
-                    <ChevronUp className="w-4 h-4 text-white" />
+                    <ChevronUp
+                      className={`${
+                        isMobile ? "w-3 h-3" : "w-4 h-4"
+                      } text-white`}
+                    />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-white" />
+                    <ChevronDown
+                      className={`${
+                        isMobile ? "w-3 h-3" : "w-4 h-4"
+                      } text-white`}
+                    />
                   )}
                 </button>
 
                 <div
-                  className={`absolute top-full left-0 mt-2 w-full bg-gray-800 rounded-lg shadow-xl border border-gray-600/50 overflow-hidden transition-all duration-300 transform origin-top ${
+                  className={`absolute ${
+                    isMobile ? "right-0" : "left-0"
+                  } top-full mt-2 w-full ${
+                    isMobile ? "min-w-[120px]" : ""
+                  } bg-gray-800 rounded-lg shadow-xl border border-gray-600/50 overflow-hidden transition-all duration-300 transform origin-top ${
                     isLanguageDropdownOpen
                       ? "opacity-100 scale-100 translate-y-0"
                       : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -244,7 +269,9 @@ function App() {
                       <img
                         src={language.flagImage}
                         alt={`${language.name} flag`}
-                        className="w-6 h-4 rounded-sm object-cover z-10"
+                        className={`${
+                          isMobile ? "w-5 h-3" : "w-6 h-4"
+                        } rounded-sm object-cover z-10`}
                       />
                       <span className="text-white text-sm z-10">
                         {language.name}
