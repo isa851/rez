@@ -1,0 +1,72 @@
+{
+  "name": "Ислам Абдикалилов",
+  "title": "Фронтенд-разработчик",
+  "profileImageAlt": "Фотография профиля Ислама Абдикалилова",
+  "experience": {
+    "years": "1 год в IT",
+    "projects": "3+ выполненных проекта",
+    "commercial": "2 коммерческих проекта"
+  },
+  "contact": {
+    "telegram": "Связаться через Telegram",
+    "github": "Посмотреть GitHub",
+    "vercel": "Vercel",
+    "title": "Давайте работать вместе",
+    "description": "Готов воплотить ваши идеи в жизнь! Давайте обсудим ваш следующий проект и создадим что-то потрясающее вместе.",
+    "telegramHandle": "@Abdikalilov_Islam",
+    "githubHandle": "isa851"
+  },
+  "about": {
+    "title": "Обо мне",
+    "description1": "Фронтенд-разработчик с 1 годом опыта в IT. Специализируюсь на создании современных веб-приложений с использованием React, Next.js, Python и Django.",
+    "description2": "На прошлой неделе я активно изучал Django и Python для backend-разработки, создал 1 страницу в Django и углубился в Next.js для создания полноценных full-stack решений. У меня есть опыт деплоя проектов на Vercel.",
+    "remote": "Доступен для удаленной работы",
+    "projects": "3 готовых проекта на Vercel",
+    "technologies": "Технологии",
+    "frontend": "Фронтенд",
+    "backend": "Бэкенд"
+  },
+  "projects": {
+    "title": "Мои проекты",
+    "more": "Больше проектов на GitHub",
+    "myShop": {
+      "title": "Мой Магазин",
+      "description": "Платформа электронной коммерции с современным UI/UX, каталогом товаров, функцией корзины и адаптивным дизайном."
+    },
+    "wbClone": {
+      "title": "Клон Wildberries",
+      "description": "Клон маркетплейса Wildberries с листингом товаров, функцией поиска и современным дизайном интерфейса."
+    },
+    "amazonClone": {
+      "title": "Клон Amazon",
+      "description": "Клон маркетплейса Amazon с списком товаров, функцией поиска и современным дизайном интерфейса."
+    }
+  },
+  "skills": {
+    "title": "Навыки и экспертиза",
+    "react": "React и Next.js",
+    "reactDesc": "Современная разработка фронтенда",
+    "python": "Python и Django",
+    "pythonDesc": "Разработка бэкенда и API",
+    "js": "JavaScript/TypeScript",
+    "jsDesc": "Основные языки программирования",
+    "fullStack": "Full Stack разработка",
+    "fullStackDesc": "Полные решения от начала до конца"
+  },
+  "tech": {
+    "react": "React",
+    "nextjs": "Next.js",
+    "tailwind": "Tailwind CSS",
+    "vercel": "Vercel",
+    "cssModules": "CSS Modules",
+    "responsive": "Адаптивный дизайн",
+    "typescript": "TypeScript",
+    "python": "Python",
+    "django": "Django",
+    "vercelDeploy": "Деплой на Vercel"
+  },
+  "footer": {
+    "author": "Ислам Абдикалилов",
+    "created": "Создано с passion и кодом."
+  }
+}

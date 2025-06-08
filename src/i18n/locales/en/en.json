@@ -1,0 +1,72 @@
+{
+  "name": "Islam Abdikalilov",
+  "title": "Frontend Developer",
+  "profileImageAlt": "Profile picture of Islam Abdikalilov",
+  "experience": {
+    "years": "1 year in IT",
+    "projects": "3+ completed projects",
+    "commercial": "2 commercial projects"
+  },
+  "contact": {
+    "telegram": "Contact via Telegram",
+    "github": "View GitHub",
+    "vercel": "Vercel",
+    "title": "Let's work together",
+    "description": "Ready to bring your ideas to life! Let's discuss your next project and create something amazing together.",
+    "telegramHandle": "@Abdikalilov_Islam",
+    "githubHandle": "isa851"
+  },
+  "about": {
+    "title": "About me",
+    "description1": "Frontend developer with 1 year of experience in the IT field. I specialize in creating modern web applications using React, Next.js, Python, and Django.",
+    "description2": "Over the past week, I've been actively learning Django and Python for backend development and have made 1 page in Django, as well as delving into Next.js to create full-fledged full-stack solutions. I have experience deploying projects on Vercel.",
+    "remote": "Available for remote work",
+    "projects": "3 ready projects on Vercel",
+    "technologies": "Technologies",
+    "frontend": "Frontend",
+    "backend": "Backend"
+  },
+  "projects": {
+    "title": "My projects",
+    "more": "More projects on GitHub",
+    "myShop": {
+      "title": "My Shop",
+      "description": "E-commerce platform with modern UI/UX, product catalog, shopping cart functionality, and responsive design."
+    },
+    "wbClone": {
+      "title": "WB Clone",
+      "description": "Wildberries marketplace clone with product listings, search functionality, and modern interface design."
+    },
+    "amazonClone": {
+      "title": "Amazon Clone",
+      "description": "Amazon marketplace clone with product list, search function and modern interface design."
+    }
+  },
+  "skills": {
+    "title": "Skills and expertise",
+    "react": "React & Next.js",
+    "reactDesc": "Modern frontend development",
+    "python": "Python & Django",
+    "pythonDesc": "Backend development & APIs",
+    "js": "JavaScript/TypeScript",
+    "jsDesc": "Core programming languages",
+    "fullStack": "Full Stack Development",
+    "fullStackDesc": "End-to-end solutions"
+  },
+  "tech": {
+    "react": "React",
+    "nextjs": "Next.js",
+    "tailwind": "Tailwind CSS",
+    "vercel": "Vercel",
+    "cssModules": "CSS Modules",
+    "responsive": "Responsive Design",
+    "typescript": "TypeScript",
+    "python": "Python",
+    "django": "Django",
+    "vercelDeploy": "Vercel Deploy"
+  },
+  "footer": {
+    "author": "Islam Abdikalilov",
+    "created": "Created with passion and code."
+  }
+}

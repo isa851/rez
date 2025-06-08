@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Github,
   Send,
@@ -7,7 +8,7 @@ import {
   Globe,
   Smartphone,
   ChevronDown,
-  Mail,
+  ChevronUp,
   MapPin,
   ExternalLink,
   Calendar,
@@ -16,21 +17,25 @@ import {
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import my from "./img/WIN_20250607_20_48_28_Pro.jpg";
 import { CgVercel } from "react-icons/cg";
+import ru from "./img/flag.svg";
+import en from "./img/en.svg";
+
 function App() {
+  const { t, i18n } = useTranslation();
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Enhanced Intersection Observer for aggressive scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -46,7 +51,6 @@ function App() {
       }
     );
 
-    // Observe all sections
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
 
@@ -59,61 +63,100 @@ function App() {
 
   const skills = [
     {
-      name: "React & Next.js",
+      name: t("skills.react"),
       level: 80,
       icon: Globe,
-      description: "Modern frontend development",
+      description: t("skills.reactDesc"),
     },
     {
-      name: "Python & Django",
+      name: t("skills.python"),
       level: 60,
       icon: Database,
-      description: "Backend development & APIs",
+      description: t("skills.pythonDesc"),
     },
     {
-      name: "JavaScript/TypeScript",
+      name: t("skills.js"),
       level: 90,
       icon: Code,
-      description: "Core programming languages",
+      description: t("skills.jsDesc"),
     },
     {
-      name: "Full Stack Development",
+      name: t("skills.fullStack"),
       level: 70,
       icon: Smartphone,
-      description: "End-to-end solutions",
+      description: t("skills.fullStackDesc"),
     },
   ];
 
   const projects = [
     {
-      title: "My Shop",
-      description:
-        "E-commerce platform with modern UI/UX, product catalog, shopping cart functionality, and responsive design.",
+      title: t("projects.myShop.title"),
+      description: t("projects.myShop.description"),
       url: "https://my-shop-phi-mauve.vercel.app/",
-      tech: ["React", "Next.js", "Tailwind CSS", "Vercel"],
+      tech: [
+        t("tech.react"),
+        t("tech.nextjs"),
+        t("tech.tailwind"),
+        t("tech.vercel"),
+      ],
       gradient: "from-blue-500 to-cyan-500",
     },
     {
-      title: "WB Clone",
-      description:
-        "Wildberries marketplace clone with product listings, search functionality, and modern interface design.",
+      title: t("projects.wbClone.title"),
+      description: t("projects.wbClone.description"),
       url: "https://wb-isa.vercel.app/",
-      tech: ["React", "Next.js", "CSS Modules", "Vercel"],
+      tech: [
+        t("tech.react"),
+        t("tech.nextjs"),
+        t("tech.cssModules"),
+        t("tech.vercel"),
+      ],
       gradient: "from-purple-500 to-pink-500",
     },
     {
-      title: "Shop Texnika",
-      description:
-        "Electronics store with product categories, detailed product pages, and optimized user experience.",
+      title: t("projects.amazonClone.title"),
+      description: t("projects.amazonClone.description"),
       url: "https://shop-texnika.vercel.app/",
-      tech: ["React", "Next.js", "Responsive Design", "Vercel"],
+      tech: [
+        t("tech.react"),
+        t("tech.nextjs"),
+        t("tech.responsive"),
+        t("tech.vercel"),
+      ],
       gradient: "from-green-500 to-teal-500",
     },
   ];
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setIsLanguageDropdownOpen(false); // Close dropdown on language selection
+  };
+
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
+
+  const languages = [
+    {
+      code: "ru",
+      name: "Русский",
+      flag: "🇷🇺",
+      flagImage: ru,
+    },
+    {
+      code: "en",
+      name: "English",
+      flag: "🇺🇸",
+      flagImage: en,
+    },
+  ];
+
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -162,18 +205,71 @@ function App() {
 
         <div className="relative z-10 text-center px-4">
           <div className="mb-8 relative">
+            {" "}
+            <div className="absolute top-6 left-6 z-20">
+              <div className="relative">
+                <button
+                  onClick={toggleLanguageDropdown}
+                  className="flex items-center gap-2 bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 border border-gray-600/50 min-w-[140px]"
+                >
+                  <img
+                    src={currentLanguage.flagImage}
+                    alt={`${currentLanguage.name} flag`}
+                    className="w-6 h-4 rounded-sm object-cover"
+                  />
+                  <span className="text-white font-medium text-sm flex-1 text-left">
+                    {currentLanguage.name}
+                  </span>
+                  {isLanguageDropdownOpen ? (
+                    <ChevronUp className="w-4 h-4 text-white" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-white" />
+                  )}
+                </button>
+
+                <div
+                  className={`absolute top-full left-0 mt-2 w-full bg-gray-800 rounded-lg shadow-xl border border-gray-600/50 overflow-hidden transition-all duration-300 transform origin-top ${
+                    isLanguageDropdownOpen
+                      ? "opacity-100 scale-100 translate-y-0"
+                      : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+                  }`}
+                >
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => changeLanguage(language.code)}
+                      className="flex items-center gap-2 px-4 py-2 w-full text-left hover:bg-gray-700 transition-all duration-200 relative group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg" />
+                      <img
+                        src={language.flagImage}
+                        alt={`${language.name} flag`}
+                        className="w-6 h-4 rounded-sm object-cover z-10"
+                      />
+                      <span className="text-white text-sm z-10">
+                        {language.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="w-32 h-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl font-bold shadow-2xl shadow-blue-500/25 animate-float-gentle hover:animate-wiggle transition-all duration-300 cursor-pointer">
-            <img className="rounded-[50px] w-[85%]" src={my} alt="" />
+              <img
+                className=" rounded-full w-[100px] h-[100px] object-cover"
+                src={my}
+                alt={t("profileImageAlt")}
+              />
             </div>
             <div className="absolute inset-0 w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-ping opacity-20"></div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x">
-            Islam Abdikalilov
+            {t("name")}
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto leading-relaxed animate-fade-in-up">
-            Frontend Developer
+            {t("title")}
           </p>
 
           <div
@@ -182,16 +278,16 @@ function App() {
           >
             <div className="flex items-center gap-2 hover:text-blue-400 transition-colors">
               <Calendar className="w-4 h-4 animate-pulse" />
-              <span>1 год в IT</span>
+              <span>{t("experience.years")}</span>
             </div>
             <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse"></div>
             <div className="flex items-center gap-2 hover:text-purple-400 transition-colors">
               <Briefcase className="w-4 h-4 animate-pulse" />
-              <span>3+ законченых проектов</span>
+              <span>{t("experience.projects")}</span>
             </div>
             <div className="flex items-center gap-2 hover:text-purple-400 transition-colors">
-              <AiOutlineFundProjectionScreen className="flex items-center gap-2 hover:text-purple-400 transition-colors" />
-              <span>2 комерчиских проекта</span>
+              <AiOutlineFundProjectionScreen className="w-4 h-4" />
+              <span>{t("experience.commercial")}</span>
             </div>
           </div>
 
@@ -206,7 +302,7 @@ function App() {
               className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 animate-glow"
             >
               <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-transform duration-300" />
-              Contact via Telegram
+              {t("contact.telegram")}
             </a>
 
             <a
@@ -216,7 +312,7 @@ function App() {
               className="group flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25"
             >
               <Github className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-              View GitHub
+              {t("contact.github")}
             </a>
             <a
               href="https://vercel.com/isa851s-projects"
@@ -225,7 +321,7 @@ function App() {
               className="group flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25"
             >
               <CgVercel className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-              Vercel
+              {t("contact.vercel")}
             </a>
           </div>
         </div>
@@ -253,7 +349,7 @@ function App() {
                 : "opacity-0 translate-y-20 scale-75"
             }`}
           >
-            Обо мне
+            {t("about.title")}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -265,26 +361,21 @@ function App() {
               }`}
             >
               <p className="text-lg text-gray-300 leading-relaxed hover:text-white transition-colors duration-300">
-                Frontend разработчик с 1 годом опыта в IT-сфере. Специализируюсь
-                на создании современных веб-приложений с использованием React,
-                Next.js, Python и Django.
+                {t("about.description1")}
               </p>
 
               <p className="text-lg text-gray-300 leading-relaxed hover:text-white transition-colors duration-300">
-                За последнюю неделю активно изучаю Django и Python для
-                backend-разработки и зделал га Django 1 стр , а также углубляюсь
-                в Next.js для создания полноценных full-stack решений. Имею опыт
-                деплоя проектов на Vercel.
+                {t("about.description2")}
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors group">
                   <MapPin className="w-5 h-5 group-hover:animate-bounce" />
-                  <span>Доступен для удаленной работы</span>
+                  <span>{t("about.remote")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors group">
                   <Code className="w-5 h-5 group-hover:animate-spin" />
-                  <span>3 готовых проекта на Vercel</span>
+                  <span>{t("about.projects")}</span>
                 </div>
               </div>
             </div>
@@ -300,41 +391,41 @@ function App() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-blue-400 transition-colors">
-                  Технологии
+                  {t("about.technologies")}
                 </h3>
                 <div className="grid grid-cols-2 gap-4 text-gray-300">
                   <div className="space-y-2">
                     <h4 className="font-semibold text-blue-400 animate-pulse">
-                      Frontend
+                      {t("about.frontend")}
                     </h4>
                     <ul className="space-y-1 text-sm">
                       <li className="hover:text-blue-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • React
+                        • {t("tech.react")}
                       </li>
                       <li className="hover:text-blue-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • Next.js
+                        • {t("tech.nextjs")}
                       </li>
                       <li className="hover:text-blue-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • TypeScript
+                        • {t("tech.typescript")}
                       </li>
                       <li className="hover:text-blue-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • Tailwind CSS
+                        • {t("tech.tailwind")}
                       </li>
                     </ul>
                   </div>
                   <div className="space-y-2">
                     <h4 className="font-semibold text-purple-400 animate-pulse">
-                      Backend
+                      {t("about.backend")}
                     </h4>
                     <ul className="space-y-1 text-sm">
                       <li className="hover:text-purple-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • Python
+                        • {t("tech.python")}
                       </li>
                       <li className="hover:text-purple-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • Django
+                        • {t("tech.django")}
                       </li>
                       <li className="hover:text-purple-300 transition-colors hover:translate-x-2 transform duration-200">
-                        • Vercel Deploy
+                        • {t("tech.vercelDeploy")}
                       </li>
                     </ul>
                   </div>
@@ -357,7 +448,7 @@ function App() {
                 : "opacity-0 translate-y-20 scale-75"
             }`}
           >
-            Мои проекты
+            {t("projects.title")}
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -426,7 +517,7 @@ function App() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
             >
               <Github className="w-5 h-5 group-hover:rotate-360 transition-transform duration-700" />
-              Больше проектов на GitHub
+              {t("projects.more")}
             </a>
           </div>
         </div>
@@ -436,7 +527,6 @@ function App() {
         id="skills"
         className="py-20 px-4 bg-gray-800/50 relative overflow-hidden"
       >
-
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10"></div>
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 animate-gradient-x"></div>
 
@@ -448,7 +538,7 @@ function App() {
                 : "opacity-0 translate-y-20 scale-75"
             }`}
           >
-            Навыки и экспертиза
+            {t("skills.title")}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -500,7 +590,6 @@ function App() {
       </section>
 
       <section id="contact" className="py-20 px-4 relative overflow-hidden">
-
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/10 to-blue-900/10"></div>
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 animate-gradient-x"></div>
 
@@ -512,7 +601,7 @@ function App() {
                 : "opacity-0 translate-y-20 scale-75"
             }`}
           >
-            Давайте работать вместе
+            {t("contact.title")}
           </h2>
 
           <p
@@ -522,8 +611,7 @@ function App() {
                 : "opacity-0 translate-y-20 rotate-6"
             }`}
           >
-            Готов воплотить ваши идеи в жизнь! Обсудим ваш следующий проект и
-            создадим что-то удивительное вместе.
+            {t("contact.description")}
           </p>
 
           <div
@@ -540,7 +628,9 @@ function App() {
               className="group flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 animate-glow"
             >
               <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="font-semibold">@Abdikalilov_Islam</span>
+              <span className="font-semibold">
+                {t("contact.telegramHandle")}
+              </span>
             </a>
 
             <a
@@ -550,7 +640,7 @@ function App() {
               className="group flex items-center gap-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25"
             >
               <Github className="w-5 h-5 group-hover:rotate-360 transition-transform duration-700" />
-              <span className="font-semibold">isa851</span>
+              <span className="font-semibold">{t("contact.githubHandle")}</span>
             </a>
           </div>
         </div>
@@ -559,7 +649,7 @@ function App() {
       <footer className="py-8 px-4 border-t border-gray-800">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-400 hover:text-white transition-colors duration-300 animate-pulse">
-            & 2025 Islam Abdikalilov. Создано со страстью  и кодом.
+            © 2025 {t("footer.author")}. {t("footer.created")}
           </p>
         </div>
       </footer>
