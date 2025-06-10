@@ -4,7 +4,7 @@
   "profileImageAlt": "Profile picture of Islam Abdikalilov",
   "experience": {
     "years": "1 year in IT",
-    "projects": "3+ completed projects",
+    "projects": "4+ completed projects",
     "commercial": "2 commercial projects"
   },
   "contact": {
@@ -40,6 +40,10 @@
     "amazonClone": {
       "title": "Amazon Clone",
       "description": "Amazon marketplace clone with product list, search function and modern interface design."
+    },
+    "CristianoRonaldo": {
+      "title": "Cristiano Ronaldo",
+      "description": "This project is made for Krish. Here is everything about Krish"
     }
   },
   "skills": {
