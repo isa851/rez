@@ -49,14 +49,15 @@ const AuthorPage: React.FC = () => {
 
   const skills = [
     { name: t('skills.react'), level: 80, icon: Globe, description: t('skills.reactDesc') },
-    { name: t('skills.python'), level: 60, icon: Database, description: t('skills.pythonDesc') },
-    { name: t('skills.js'), level: 90, icon: Code, description: t('skills.jsDesc') },
+    { name: t('skills.python'), level: 50, icon: Database, description: t('skills.pythonDesc') },
+    { name: t('skills.js'), level: 65, icon: Code, description: t('skills.jsDesc') },
     { name: t('skills.fullStack'), level: 70, icon: Smartphone, description: t('skills.fullStackDesc') },
   ];
 
   const projects = [
     {
       title: t('projects.myShop.title'),
+      image: './img/Снимок экрана 2025-06-27 150511.png',
       description: t('projects.myShop.description'),
       url: 'https://my-shop-phi-mauve.vercel.app/',
       tech: [t('tech.react'), t('tech.nextjs'), t('tech.tailwind'), t('tech.vercel')],
@@ -77,6 +78,7 @@ const AuthorPage: React.FC = () => {
       gradient: 'from-green-500 to-teal-500',
     },
     {
+      img: 'https://isa851.github.io/portfolio/img/cr7.png',
       title: t('projects.CristianoRonaldo.title'),
       description: t('projects.CristianoRonaldo.description'),
       url: 'https://cr7-five.vercel.app/',
@@ -364,9 +366,13 @@ const AuthorPage: React.FC = () => {
                 <div className="p-6 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
-                      {project.title}
-                    </h3>
+
+                  <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                 
                     <a
                       href={project.url}
                       target="_blank"
